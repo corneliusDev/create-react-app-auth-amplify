@@ -1,0 +1,14 @@
+{
+    "CreateAPIKey": 1,
+    "AppSyncApiName": "jwbquery",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognitocf0c6096",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-authcra-dev-134417-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/b677e5a6ca39cd1183ecbffad49e3aecd986edff"
+}

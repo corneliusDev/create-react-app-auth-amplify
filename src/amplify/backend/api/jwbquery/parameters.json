@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "jwbquery",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcognitocf0c6096",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2021-11-27T18:58:29.537Z"
+}

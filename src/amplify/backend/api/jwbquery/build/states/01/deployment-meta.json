@@ -1,0 +1,26 @@
+{
+  "stackTemplatePathOrUrl": "amplify-appsync-files/330bc3bd0584df12d570c5d4a6b411015c2c3681/states/01/cloudformation-template.json",
+  "previousMetaKey": "amplify-appsync-files/330bc3bd0584df12d570c5d4a6b411015c2c3681/states/initial-stack/deployment-meta.json",
+  "parameters": {
+    "DynamoDBModelTableReadIOPS": "5",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "DynamoDBEnablePointInTimeRecovery": "false",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "S3DeploymentBucket": "amplify-authcra-dev-134417-deployment",
+    "DynamoDBModelTableWriteIOPS": "5",
+    "APIKeyExpirationEpoch": "0",
+    "env": "dev",
+    "S3DeploymentRootKey": "amplify-appsync-files/330bc3bd0584df12d570c5d4a6b411015c2c3681/states/01",
+    "AppSyncApiName": "jwbquery",
+    "CreateAPIKey": "1",
+    "AuthCognitoUserPoolId": "us-east-1_aTI8vz1sc"
+  },
+  "stackName": "arn:aws:cloudformation:us-east-1:599587551675:stack/amplify-authcra-dev-134417-apijwbquery-19V76JIYSSJG6/7606cc20-4fb3-11ec-8a22-0aa2704c8e1f",
+  "tableNames": [
+    "Job-uki2urkj5jdfpdhzuvwrzjivty-dev"
+  ],
+  "capabilities": [
+    "CAPABILITY_NAMED_IAM",
+    "CAPABILITY_AUTO_EXPAND"
+  ]
+}

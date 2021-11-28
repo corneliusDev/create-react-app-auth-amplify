@@ -1,0 +1,21 @@
+## Pre sign-up example: Auto-confirm users from a registered domain
+
+This is a sample Lambda trigger called just before sign-up with the user pool pre sign-up Lambda trigger. It uses a custom attribute custom:domain to automatically confirm new users from a particular email domain. Any new users not in the custom domain will be added to the user pool, but not automatically confirmed.
+
+```exports.handler = (event, context, callback) => {
+    // Set the user pool autoConfirmUser flag after validating the email domain
+    event.response.autoConfirmUser = false;
+
+    // Split the email address so we can compare domains
+    var address = event.request.userAttributes.email.split("@")
+    
+    // This example uses a custom attribute "custom:domain"
+    if (event.request.userAttributes.hasOwnProperty("custom:domain")) {
+        if ( event.request.userAttributes['custom:domain'] === address[1]) {
+            event.response.autoConfirmUser = true;
+        }
+    }
+
+    // Return to Amazon Cognito
+    callback(null, event);
+};```

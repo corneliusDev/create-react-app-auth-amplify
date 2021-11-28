@@ -1,0 +1,160 @@
+type Company @model @auth(rules: [{allow: private, operations: [read, update]}, {allow: groups, groups: ["jwb-comp"], operations: [read, update]}]) {
+  id: ID!
+  company_name: String
+  plan: String
+  Jobs: [Job] @connection(keyName: "byCompany", fields: ["id"])
+  User: User @connection
+}
+
+type User @model @auth(rules: [{allow: private, operations: [read]}, {allow: owner}, {allow: groups, groups: ["jwb-comp"], operations: [read]}]) {
+  id: ID!
+  first_name: String
+  last_name: String
+  phone1: String
+  email1: String
+  city: String
+  state: String
+  rating: String
+  company_id: String
+  applications: String
+  UserApplicationsOwned: [UserApplication] @connection(keyName: "byUser", fields: ["id"])
+  UserJobsOwned: [UserJob] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type EmailThreads @model @auth(rules: [{allow: private}]) {
+  id: ID!
+}
+
+type Candidate @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  first_name: String
+  last_name: String
+  email1: String
+  phone1: String
+  city: String
+  state: String
+  owners: String
+  rating: String
+  feedback: String
+  experience: String
+  race: String
+  gender: String
+  Applications: [Application] @connection(keyName: "byCandidate", fields: ["id"])
+}
+
+type Interview @model @auth(rules: [{allow: private}]) @key(name: "byApplication", fields: ["applicationID"]) {
+  id: ID!
+  type: String
+  startDate: String
+  endDate: String
+  location: String
+  interviewer: String
+  feed_back_status: String
+  interview_status: String
+  applicationID: ID
+  FeedBacks: [FeedBack] @connection(keyName: "byInterview", fields: ["id"])
+  Candidate: Candidate @connection
+}
+
+type FeedBack @model @auth(rules: [{allow: private}]) @key(name: "byApplication", fields: ["applicationID"]) @key(name: "byInterview", fields: ["interviewID"]) {
+  id: ID!
+  feedback: String
+  recommend: Boolean
+  rating: Int
+  userId: ID
+  applicationID: ID
+  interviewID: ID
+}
+
+type Application @model @auth(rules: [{allow: private}]) @key(name: "byJob", fields: ["jobID"]) @key(name: "byCandidate", fields: ["candidateID"]) {
+  id: ID!
+  first_name: String
+  last_name: String
+  email1: AWSEmail
+  phone1: AWSPhone
+  city: String
+  state: String
+  owners: String
+  rating: String
+  stage: String
+  interviews: String
+  feedback: String
+  experience: String
+  email_threads: String
+  race: String
+  gender: String
+  veteran: String
+  disability: String
+  source: String
+  source_category: String
+  referer: String
+  tags: [String]
+  supporting_docs: String
+  comments: String
+  tasks: String
+  job: String
+  jobID: ID
+  FeedBacks: [FeedBack] @connection(keyName: "byApplication", fields: ["id"])
+  Interviews: [Interview] @connection(keyName: "byApplication", fields: ["id"])
+  candidateID: ID
+  users: [UserApplication] @connection(keyName: "byApplication", fields: ["id"])
+}
+
+type Job @model @auth(rules: [{allow: private}]) @key(name: "byCompany", fields: ["companyID"]) {
+  id: ID!
+  job_title: String
+  department_code: String
+  country: String
+  zip_code: Int
+  is_remote: Boolean
+  description: String
+  requirements: String
+  benefits: String
+  industry: String
+  job_function: String
+  sub_function: String
+  employment_type: String
+  experience: String
+  education: String
+  keywords: String
+  salary_to: Int
+  salary_from: Int
+  currency: String
+  state: String
+  tags: [String]
+  published_time: AWSDateTime
+  Applications: [Application] @connection(keyName: "byJob", fields: ["id"])
+  users: [UserJob] @connection(keyName: "byJob", fields: ["id"])
+  companyID: ID
+}
+
+type Task @model @auth(rules: [{allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete]}, {allow: groups, groups: ["Employees"], queries: [get, list], mutations: null}]) {
+  id: ID!
+  title: String!
+  description: String
+  status: String
+  due_date: String
+  assigned_to: User @connection
+}
+
+type PrivateNote @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  content: String!
+}
+
+type UserApplication @model(queries: null) @key(name: "byUser", fields: ["userID", "applicationID"]) @key(name: "byApplication", fields: ["applicationID", "userID"]) @auth(rules: [{allow: private, operations: [read]}, {allow: owner}, {allow: groups, groups: ["jwb-comp"], operations: [read]}, {allow: private}]) {
+  id: ID!
+  userID: ID!
+  applicationID: ID!
+  user: User! @connection(fields: ["userID"])
+  application: Application! @connection(fields: ["applicationID"])
+}
+
+type UserJob @model(queries: null) @key(name: "byUser", fields: ["userID", "jobID"]) @key(name: "byJob", fields: ["jobID", "userID"]) @auth(rules: [{allow: private, operations: [read]}, {allow: owner}, {allow: groups, groups: ["jwb-comp"], operations: [read]}, {allow: private}]) {
+  id: ID!
+  userID: ID!
+  jobID: ID!
+  user: User! @connection(fields: ["userID"])
+  job: Job! @connection(fields: ["jobID"])
+}
+ 
