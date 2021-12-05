@@ -10,6 +10,23 @@
       "StackName": "amplify-authcra-dev-134417",
       "StackId": "arn:aws:cloudformation:us-east-1:599587551675:stack/amplify-authcra-dev-134417/08e3e9d0-4fb2-11ec-a591-0a4842b7cbe9",
       "AmplifyAppId": "d218wifpq2rvgt"
+    },
+    "categories": {
+      "auth": {
+        "authcra79c12629": {
+          "userPoolId": "us-east-1_AVcUMfTio",
+          "userPoolName": "platform-auth",
+          "webClientId": "jo7s0v3vo8dd5mdccf87j4osm",
+          "nativeClientId": "jo7s0v3vo8dd5mdccf87j4osm",
+          "identityPoolId": "us-east-1:aec08662-f92f-4a35-9dd2-96f269d7bd33",
+          "identityPoolName": "just_work_better_user_pool",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::599587551675:role/Cognito_just_work_better_user_poolAuth_Role",
+          "authRoleName": "Cognito_just_work_better_user_poolAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::599587551675:role/Cognito_just_work_better_user_poolUnauth_Role",
+          "unauthRoleName": "Cognito_just_work_better_user_poolUnauth_Role"
+        }
+      }
     }
   }
 }

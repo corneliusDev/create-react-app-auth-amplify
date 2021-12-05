@@ -2,21 +2,51 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const ModelAttributeTypes = {
+  "NULL": "_null",
+  "BINARY": "binary",
+  "BINARY_SET": "binarySet",
+  "BOOL": "bool",
+  "LIST": "list",
+  "MAP": "map",
+  "NUMBER": "number",
+  "NUMBER_SET": "numberSet",
+  "STRING": "string",
+  "STRING_SET": "stringSet"
+};
 
+const ModelSortDirection = {
+  "ASC": "ASC",
+  "DESC": "DESC"
+};
 
-const { Company, Job, Application, FeedBack, Interview, Candidate, UserApplication, User, UserJob, EmailThreads, Task, PrivateNote } = initSchema(schema);
+const { Application, ModelFeedBackConnection, FeedBack, ModelInterviewConnection, Interview, Candidate, ModelApplicationConnection, ModelUserApplicationConnection, UserApplication, User, ModelUserJobConnection, UserJob, Job, Company, ModelJobConnection, EmailThreads, PrivateNote, Task, ModelCandidateConnection, ModelCompanyConnection, ModelEmailThreadsConnection, ModelPrivateNoteConnection, ModelTaskConnection, ModelUserConnection } = initSchema(schema);
 
 export {
-  Company,
-  Job,
+  ModelAttributeTypes,
+  ModelSortDirection,
   Application,
+  ModelFeedBackConnection,
   FeedBack,
+  ModelInterviewConnection,
   Interview,
   Candidate,
+  ModelApplicationConnection,
+  ModelUserApplicationConnection,
   UserApplication,
   User,
+  ModelUserJobConnection,
   UserJob,
+  Job,
+  Company,
+  ModelJobConnection,
   EmailThreads,
+  PrivateNote,
   Task,
-  PrivateNote
+  ModelCandidateConnection,
+  ModelCompanyConnection,
+  ModelEmailThreadsConnection,
+  ModelPrivateNoteConnection,
+  ModelTaskConnection,
+  ModelUserConnection
 };

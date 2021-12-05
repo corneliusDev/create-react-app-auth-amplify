@@ -1,0 +1,14 @@
+{
+    "AppSyncApiName": "authcra",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authauthcra79c12629",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "AuthModeLastUpdated": "2021-11-29T04:07:37.483Z",
+    "S3DeploymentBucket": "amplify-authcra-dev-134417-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/2a34eff5f1849c4e66327e62effedab5db20fc23"
+}

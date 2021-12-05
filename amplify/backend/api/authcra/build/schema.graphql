@@ -1,0 +1,1228 @@
+type Application @aws_cognito_user_pools @aws_iam {
+  FeedBacks(filter: ModelFeedBackFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelFeedBackConnection @aws_cognito_user_pools @aws_iam
+  Interviews(filter: ModelInterviewFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelInterviewConnection @aws_cognito_user_pools @aws_iam
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  candidateID: ID
+  city: String
+  comments: String
+  createdAt: AWSDateTime!
+  disability: String
+  email1: AWSEmail
+  email_threads: String
+  experience: String
+  feedback: String
+  first_name: String
+  gender: String
+  id: ID!
+  interviews: String
+  job: String
+  jobID: ID
+  last_name: String
+  owners: String
+  phone1: AWSPhone
+  race: String
+  rating: String
+  referer: String
+  source: String
+  source_category: String
+  stage: String
+  state: String
+  supporting_docs: String
+  tags: [String]
+  tasks: String
+  updatedAt: AWSDateTime!
+  users(filter: ModelUserApplicationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection, userID: ModelIDKeyConditionInput): ModelUserApplicationConnection @aws_cognito_user_pools @aws_iam
+  veteran: String
+}
+
+type Candidate @aws_cognito_user_pools @aws_iam {
+  Applications(filter: ModelApplicationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelApplicationConnection @aws_cognito_user_pools @aws_iam
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  city: String
+  createdAt: AWSDateTime!
+  email1: String
+  experience: String
+  feedback: String
+  first_name: String
+  gender: String
+  id: ID!
+  last_name: String
+  owners: String
+  phone1: String
+  race: String
+  rating: String
+  state: String
+  updatedAt: AWSDateTime!
+}
+
+type Company @aws_cognito_user_pools @aws_iam {
+  Jobs(filter: ModelJobFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelJobConnection @aws_cognito_user_pools @aws_iam
+  User: User @aws_cognito_user_pools @aws_iam
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  company_name: String
+  createdAt: AWSDateTime!
+  id: ID!
+  plan: String
+  updatedAt: AWSDateTime!
+}
+
+type EmailThreads @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  id: ID!
+  updatedAt: AWSDateTime!
+}
+
+type FeedBack @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  applicationID: ID
+  createdAt: AWSDateTime!
+  feedback: String
+  id: ID!
+  interviewID: ID
+  rating: Int
+  recommend: Boolean
+  updatedAt: AWSDateTime!
+  userId: ID
+}
+
+type Interview @aws_cognito_user_pools @aws_iam {
+  Candidate: Candidate @aws_cognito_user_pools @aws_iam
+  FeedBacks(filter: ModelFeedBackFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelFeedBackConnection @aws_cognito_user_pools @aws_iam
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  applicationID: ID
+  createdAt: AWSDateTime!
+  endDate: String
+  feed_back_status: String
+  id: ID!
+  interview_status: String
+  interviewer: String
+  location: String
+  startDate: String
+  type: String
+  updatedAt: AWSDateTime!
+}
+
+type Job @aws_cognito_user_pools @aws_iam {
+  Applications(filter: ModelApplicationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelApplicationConnection @aws_cognito_user_pools @aws_iam
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  benefits: String
+  companyID: ID
+  country: String
+  createdAt: AWSDateTime!
+  currency: String
+  department_code: String
+  description: String
+  education: String
+  employment_type: String
+  experience: String
+  id: ID!
+  industry: String
+  is_remote: Boolean
+  job_function: String
+  job_title: String
+  keywords: String
+  published_time: AWSDateTime
+  requirements: String
+  salary_from: Int
+  salary_to: Int
+  state: String
+  sub_function: String
+  tags: [String]
+  updatedAt: AWSDateTime!
+  users(filter: ModelUserJobFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection, userID: ModelIDKeyConditionInput): ModelUserJobConnection @aws_cognito_user_pools @aws_iam
+  zip_code: Int
+}
+
+type ModelApplicationConnection @aws_cognito_user_pools @aws_iam {
+  items: [Application!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelCandidateConnection @aws_cognito_user_pools @aws_iam {
+  items: [Candidate!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelCompanyConnection @aws_cognito_user_pools @aws_iam {
+  items: [Company!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelEmailThreadsConnection @aws_cognito_user_pools @aws_iam {
+  items: [EmailThreads!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelFeedBackConnection @aws_cognito_user_pools @aws_iam {
+  items: [FeedBack!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelInterviewConnection @aws_cognito_user_pools @aws_iam {
+  items: [Interview!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelJobConnection @aws_cognito_user_pools @aws_iam {
+  items: [Job!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelPrivateNoteConnection @aws_cognito_user_pools @aws_iam {
+  items: [PrivateNote!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelTaskConnection @aws_cognito_user_pools @aws_iam {
+  items: [Task!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserApplicationConnection @aws_cognito_user_pools @aws_iam {
+  items: [UserApplication!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserConnection @aws_cognito_user_pools @aws_iam {
+  items: [User!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserJobConnection @aws_cognito_user_pools @aws_iam {
+  items: [UserJob!]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type Mutation {
+  createApplication(condition: ModelApplicationConditionInput, input: CreateApplicationInput!): Application @aws_cognito_user_pools @aws_iam
+  createCandidate(condition: ModelCandidateConditionInput, input: CreateCandidateInput!): Candidate @aws_cognito_user_pools @aws_iam
+  createCompany(condition: ModelCompanyConditionInput, input: CreateCompanyInput!): Company @aws_cognito_user_pools @aws_iam
+  createEmailThreads(condition: ModelEmailThreadsConditionInput, input: CreateEmailThreadsInput!): EmailThreads @aws_cognito_user_pools @aws_iam
+  createFeedBack(condition: ModelFeedBackConditionInput, input: CreateFeedBackInput!): FeedBack @aws_cognito_user_pools @aws_iam
+  createInterview(condition: ModelInterviewConditionInput, input: CreateInterviewInput!): Interview @aws_cognito_user_pools @aws_iam
+  createJob(condition: ModelJobConditionInput, input: CreateJobInput!): Job @aws_cognito_user_pools @aws_iam
+  createPrivateNote(condition: ModelPrivateNoteConditionInput, input: CreatePrivateNoteInput!): PrivateNote @aws_cognito_user_pools @aws_iam
+  createTask(condition: ModelTaskConditionInput, input: CreateTaskInput!): Task @aws_cognito_user_pools @aws_iam
+  createUser(condition: ModelUserConditionInput, input: CreateUserInput!): User @aws_cognito_user_pools @aws_iam
+  createUserApplication(condition: ModelUserApplicationConditionInput, input: CreateUserApplicationInput!): UserApplication @aws_cognito_user_pools @aws_iam
+  createUserJob(condition: ModelUserJobConditionInput, input: CreateUserJobInput!): UserJob @aws_cognito_user_pools @aws_iam
+  deleteApplication(condition: ModelApplicationConditionInput, input: DeleteApplicationInput!): Application @aws_cognito_user_pools @aws_iam
+  deleteCandidate(condition: ModelCandidateConditionInput, input: DeleteCandidateInput!): Candidate @aws_cognito_user_pools @aws_iam
+  deleteCompany(condition: ModelCompanyConditionInput, input: DeleteCompanyInput!): Company @aws_cognito_user_pools @aws_iam
+  deleteEmailThreads(condition: ModelEmailThreadsConditionInput, input: DeleteEmailThreadsInput!): EmailThreads @aws_cognito_user_pools @aws_iam
+  deleteFeedBack(condition: ModelFeedBackConditionInput, input: DeleteFeedBackInput!): FeedBack @aws_cognito_user_pools @aws_iam
+  deleteInterview(condition: ModelInterviewConditionInput, input: DeleteInterviewInput!): Interview @aws_cognito_user_pools @aws_iam
+  deleteJob(condition: ModelJobConditionInput, input: DeleteJobInput!): Job @aws_cognito_user_pools @aws_iam
+  deletePrivateNote(condition: ModelPrivateNoteConditionInput, input: DeletePrivateNoteInput!): PrivateNote @aws_cognito_user_pools @aws_iam
+  deleteTask(condition: ModelTaskConditionInput, input: DeleteTaskInput!): Task @aws_cognito_user_pools @aws_iam
+  deleteUser(condition: ModelUserConditionInput, input: DeleteUserInput!): User @aws_cognito_user_pools @aws_iam
+  deleteUserApplication(condition: ModelUserApplicationConditionInput, input: DeleteUserApplicationInput!): UserApplication @aws_cognito_user_pools @aws_iam
+  deleteUserJob(condition: ModelUserJobConditionInput, input: DeleteUserJobInput!): UserJob @aws_cognito_user_pools @aws_iam
+  updateApplication(condition: ModelApplicationConditionInput, input: UpdateApplicationInput!): Application @aws_cognito_user_pools @aws_iam
+  updateCandidate(condition: ModelCandidateConditionInput, input: UpdateCandidateInput!): Candidate @aws_cognito_user_pools @aws_iam
+  updateCompany(condition: ModelCompanyConditionInput, input: UpdateCompanyInput!): Company @aws_cognito_user_pools @aws_iam
+  updateEmailThreads(condition: ModelEmailThreadsConditionInput, input: UpdateEmailThreadsInput!): EmailThreads @aws_cognito_user_pools @aws_iam
+  updateFeedBack(condition: ModelFeedBackConditionInput, input: UpdateFeedBackInput!): FeedBack @aws_cognito_user_pools @aws_iam
+  updateInterview(condition: ModelInterviewConditionInput, input: UpdateInterviewInput!): Interview @aws_cognito_user_pools @aws_iam
+  updateJob(condition: ModelJobConditionInput, input: UpdateJobInput!): Job @aws_cognito_user_pools @aws_iam
+  updatePrivateNote(condition: ModelPrivateNoteConditionInput, input: UpdatePrivateNoteInput!): PrivateNote @aws_cognito_user_pools @aws_iam
+  updateTask(condition: ModelTaskConditionInput, input: UpdateTaskInput!): Task @aws_cognito_user_pools @aws_iam
+  updateUser(condition: ModelUserConditionInput, input: UpdateUserInput!): User @aws_cognito_user_pools @aws_iam
+  updateUserApplication(condition: ModelUserApplicationConditionInput, input: UpdateUserApplicationInput!): UserApplication @aws_cognito_user_pools @aws_iam
+  updateUserJob(condition: ModelUserJobConditionInput, input: UpdateUserJobInput!): UserJob @aws_cognito_user_pools @aws_iam
+}
+
+type PrivateNote @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  content: String!
+  createdAt: AWSDateTime!
+  id: ID!
+  owner: String
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  getApplication(id: ID!): Application @aws_cognito_user_pools @aws_iam
+  getCandidate(id: ID!): Candidate @aws_cognito_user_pools @aws_iam
+  getCompany(id: ID!): Company @aws_cognito_user_pools @aws_iam
+  getEmailThreads(id: ID!): EmailThreads @aws_cognito_user_pools @aws_iam
+  getFeedBack(id: ID!): FeedBack @aws_cognito_user_pools @aws_iam
+  getInterview(id: ID!): Interview @aws_cognito_user_pools @aws_iam
+  getJob(id: ID!): Job @aws_cognito_user_pools @aws_iam
+  getPrivateNote(id: ID!): PrivateNote @aws_cognito_user_pools @aws_iam
+  getTask(id: ID!): Task @aws_cognito_user_pools @aws_iam
+  getUser(id: ID!): User @aws_cognito_user_pools @aws_iam
+  listApplications(filter: ModelApplicationFilterInput, limit: Int, nextToken: String): ModelApplicationConnection @aws_cognito_user_pools @aws_iam
+  listCandidates(filter: ModelCandidateFilterInput, limit: Int, nextToken: String): ModelCandidateConnection @aws_cognito_user_pools @aws_iam
+  listCompanys(filter: ModelCompanyFilterInput, limit: Int, nextToken: String): ModelCompanyConnection @aws_cognito_user_pools @aws_iam
+  listEmailThreadss(filter: ModelEmailThreadsFilterInput, limit: Int, nextToken: String): ModelEmailThreadsConnection @aws_cognito_user_pools @aws_iam
+  listFeedBacks(filter: ModelFeedBackFilterInput, limit: Int, nextToken: String): ModelFeedBackConnection @aws_cognito_user_pools @aws_iam
+  listInterviews(filter: ModelInterviewFilterInput, limit: Int, nextToken: String): ModelInterviewConnection @aws_cognito_user_pools @aws_iam
+  listJobs(filter: ModelJobFilterInput, limit: Int, nextToken: String): ModelJobConnection @aws_cognito_user_pools @aws_iam
+  listPrivateNotes(filter: ModelPrivateNoteFilterInput, limit: Int, nextToken: String): ModelPrivateNoteConnection @aws_cognito_user_pools @aws_iam
+  listTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String): ModelTaskConnection @aws_cognito_user_pools @aws_iam
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_cognito_user_pools @aws_iam
+  syncApplications(filter: ModelApplicationFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelApplicationConnection @aws_cognito_user_pools @aws_iam
+  syncCandidates(filter: ModelCandidateFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelCandidateConnection @aws_cognito_user_pools @aws_iam
+  syncCompanies(filter: ModelCompanyFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelCompanyConnection @aws_cognito_user_pools @aws_iam
+  syncEmailThreads(filter: ModelEmailThreadsFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelEmailThreadsConnection @aws_cognito_user_pools @aws_iam
+  syncFeedBacks(filter: ModelFeedBackFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelFeedBackConnection @aws_cognito_user_pools @aws_iam
+  syncInterviews(filter: ModelInterviewFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelInterviewConnection @aws_cognito_user_pools @aws_iam
+  syncJobs(filter: ModelJobFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelJobConnection @aws_cognito_user_pools @aws_iam
+  syncPrivateNotes(filter: ModelPrivateNoteFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelPrivateNoteConnection @aws_cognito_user_pools @aws_iam
+  syncTasks(filter: ModelTaskFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelTaskConnection @aws_cognito_user_pools @aws_iam
+  syncUserApplications(filter: ModelUserApplicationFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserApplicationConnection @aws_cognito_user_pools @aws_iam
+  syncUserJobs(filter: ModelUserJobFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserJobConnection @aws_cognito_user_pools @aws_iam
+  syncUsers(filter: ModelUserFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserConnection @aws_cognito_user_pools @aws_iam
+}
+
+type Subscription {
+  onCreateApplication: Application @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createApplication"])
+  onCreateCandidate: Candidate @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createCandidate"])
+  onCreateCompany: Company @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createCompany"])
+  onCreateEmailThreads: EmailThreads @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createEmailThreads"])
+  onCreateFeedBack: FeedBack @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createFeedBack"])
+  onCreateInterview: Interview @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createInterview"])
+  onCreateJob: Job @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createJob"])
+  onCreatePrivateNote(owner: String): PrivateNote @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createPrivateNote"])
+  onCreateTask: Task @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createTask"])
+  onCreateUser: User @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createUser"])
+  onCreateUserApplication: UserApplication @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createUserApplication"])
+  onCreateUserJob: UserJob @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["createUserJob"])
+  onDeleteApplication: Application @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteApplication"])
+  onDeleteCandidate: Candidate @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteCandidate"])
+  onDeleteCompany: Company @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteCompany"])
+  onDeleteEmailThreads: EmailThreads @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteEmailThreads"])
+  onDeleteFeedBack: FeedBack @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteFeedBack"])
+  onDeleteInterview: Interview @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteInterview"])
+  onDeleteJob: Job @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteJob"])
+  onDeletePrivateNote(owner: String): PrivateNote @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deletePrivateNote"])
+  onDeleteTask: Task @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteTask"])
+  onDeleteUser: User @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteUser"])
+  onDeleteUserApplication: UserApplication @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteUserApplication"])
+  onDeleteUserJob: UserJob @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["deleteUserJob"])
+  onUpdateApplication: Application @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateApplication"])
+  onUpdateCandidate: Candidate @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateCandidate"])
+  onUpdateCompany: Company @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateCompany"])
+  onUpdateEmailThreads: EmailThreads @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateEmailThreads"])
+  onUpdateFeedBack: FeedBack @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateFeedBack"])
+  onUpdateInterview: Interview @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateInterview"])
+  onUpdateJob: Job @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateJob"])
+  onUpdatePrivateNote(owner: String): PrivateNote @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updatePrivateNote"])
+  onUpdateTask: Task @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateTask"])
+  onUpdateUser: User @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateUser"])
+  onUpdateUserApplication: UserApplication @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateUserApplication"])
+  onUpdateUserJob: UserJob @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations: ["updateUserJob"])
+}
+
+type Task @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  assigned_to: User @aws_cognito_user_pools @aws_iam
+  createdAt: AWSDateTime!
+  description: String
+  due_date: String
+  id: ID!
+  status: String
+  title: String!
+  updatedAt: AWSDateTime!
+}
+
+type User @aws_cognito_user_pools @aws_iam {
+  UserApplicationsOwned(applicationID: ModelIDKeyConditionInput, filter: ModelUserApplicationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserApplicationConnection @aws_cognito_user_pools @aws_iam
+  UserJobsOwned(filter: ModelUserJobFilterInput, jobID: ModelIDKeyConditionInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserJobConnection @aws_cognito_user_pools @aws_iam
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  applications: String
+  city: String
+  company_id: String
+  createdAt: AWSDateTime!
+  email1: String
+  first_name: String
+  id: ID!
+  last_name: String
+  phone1: String
+  rating: String
+  state: String
+  updatedAt: AWSDateTime!
+}
+
+type UserApplication @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  application: Application! @aws_cognito_user_pools @aws_iam
+  applicationID: ID!
+  createdAt: AWSDateTime!
+  id: ID!
+  updatedAt: AWSDateTime!
+  user: User! @aws_cognito_user_pools @aws_iam
+  userID: ID!
+}
+
+type UserJob @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  id: ID!
+  job: Job! @aws_cognito_user_pools @aws_iam
+  jobID: ID!
+  updatedAt: AWSDateTime!
+  user: User! @aws_cognito_user_pools @aws_iam
+  userID: ID!
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateApplicationInput {
+  _version: Int
+  candidateID: ID
+  city: String
+  comments: String
+  disability: String
+  email1: AWSEmail
+  email_threads: String
+  experience: String
+  feedback: String
+  first_name: String
+  gender: String
+  id: ID
+  interviews: String
+  job: String
+  jobID: ID
+  last_name: String
+  owners: String
+  phone1: AWSPhone
+  race: String
+  rating: String
+  referer: String
+  source: String
+  source_category: String
+  stage: String
+  state: String
+  supporting_docs: String
+  tags: [String]
+  tasks: String
+  veteran: String
+}
+
+input CreateCandidateInput {
+  _version: Int
+  city: String
+  email1: String
+  experience: String
+  feedback: String
+  first_name: String
+  gender: String
+  id: ID
+  last_name: String
+  owners: String
+  phone1: String
+  race: String
+  rating: String
+  state: String
+}
+
+input CreateCompanyInput {
+  _version: Int
+  companyUserId: ID
+  company_name: String
+  id: ID
+  plan: String
+}
+
+input CreateEmailThreadsInput {
+  _version: Int
+  id: ID
+}
+
+input CreateFeedBackInput {
+  _version: Int
+  applicationID: ID
+  feedback: String
+  id: ID
+  interviewID: ID
+  rating: Int
+  recommend: Boolean
+  userId: ID
+}
+
+input CreateInterviewInput {
+  _version: Int
+  applicationID: ID
+  endDate: String
+  feed_back_status: String
+  id: ID
+  interviewCandidateId: ID
+  interview_status: String
+  interviewer: String
+  location: String
+  startDate: String
+  type: String
+}
+
+input CreateJobInput {
+  _version: Int
+  benefits: String
+  companyID: ID
+  country: String
+  currency: String
+  department_code: String
+  description: String
+  education: String
+  employment_type: String
+  experience: String
+  id: ID
+  industry: String
+  is_remote: Boolean
+  job_function: String
+  job_title: String
+  keywords: String
+  published_time: AWSDateTime
+  requirements: String
+  salary_from: Int
+  salary_to: Int
+  state: String
+  sub_function: String
+  tags: [String]
+  zip_code: Int
+}
+
+input CreatePrivateNoteInput {
+  _version: Int
+  content: String!
+  id: ID
+}
+
+input CreateTaskInput {
+  _version: Int
+  description: String
+  due_date: String
+  id: ID
+  status: String
+  taskAssigned_toId: ID
+  title: String!
+}
+
+input CreateUserApplicationInput {
+  _version: Int
+  applicationID: ID!
+  id: ID
+  userID: ID!
+}
+
+input CreateUserInput {
+  _version: Int
+  applications: String
+  city: String
+  company_id: String
+  email1: String
+  first_name: String
+  id: ID
+  last_name: String
+  phone1: String
+  rating: String
+  state: String
+}
+
+input CreateUserJobInput {
+  _version: Int
+  id: ID
+  jobID: ID!
+  userID: ID!
+}
+
+input DeleteApplicationInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteCandidateInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteCompanyInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteEmailThreadsInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteFeedBackInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteInterviewInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteJobInput {
+  _version: Int
+  id: ID!
+}
+
+input DeletePrivateNoteInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteTaskInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserApplicationInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserJobInput {
+  _version: Int
+  id: ID!
+}
+
+input ModelApplicationConditionInput {
+  and: [ModelApplicationConditionInput]
+  candidateID: ModelIDInput
+  city: ModelStringInput
+  comments: ModelStringInput
+  disability: ModelStringInput
+  email1: ModelStringInput
+  email_threads: ModelStringInput
+  experience: ModelStringInput
+  feedback: ModelStringInput
+  first_name: ModelStringInput
+  gender: ModelStringInput
+  interviews: ModelStringInput
+  job: ModelStringInput
+  jobID: ModelIDInput
+  last_name: ModelStringInput
+  not: ModelApplicationConditionInput
+  or: [ModelApplicationConditionInput]
+  owners: ModelStringInput
+  phone1: ModelStringInput
+  race: ModelStringInput
+  rating: ModelStringInput
+  referer: ModelStringInput
+  source: ModelStringInput
+  source_category: ModelStringInput
+  stage: ModelStringInput
+  state: ModelStringInput
+  supporting_docs: ModelStringInput
+  tags: ModelStringInput
+  tasks: ModelStringInput
+  veteran: ModelStringInput
+}
+
+input ModelApplicationFilterInput {
+  and: [ModelApplicationFilterInput]
+  candidateID: ModelIDInput
+  city: ModelStringInput
+  comments: ModelStringInput
+  disability: ModelStringInput
+  email1: ModelStringInput
+  email_threads: ModelStringInput
+  experience: ModelStringInput
+  feedback: ModelStringInput
+  first_name: ModelStringInput
+  gender: ModelStringInput
+  id: ModelIDInput
+  interviews: ModelStringInput
+  job: ModelStringInput
+  jobID: ModelIDInput
+  last_name: ModelStringInput
+  not: ModelApplicationFilterInput
+  or: [ModelApplicationFilterInput]
+  owners: ModelStringInput
+  phone1: ModelStringInput
+  race: ModelStringInput
+  rating: ModelStringInput
+  referer: ModelStringInput
+  source: ModelStringInput
+  source_category: ModelStringInput
+  stage: ModelStringInput
+  state: ModelStringInput
+  supporting_docs: ModelStringInput
+  tags: ModelStringInput
+  tasks: ModelStringInput
+  veteran: ModelStringInput
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelCandidateConditionInput {
+  and: [ModelCandidateConditionInput]
+  city: ModelStringInput
+  email1: ModelStringInput
+  experience: ModelStringInput
+  feedback: ModelStringInput
+  first_name: ModelStringInput
+  gender: ModelStringInput
+  last_name: ModelStringInput
+  not: ModelCandidateConditionInput
+  or: [ModelCandidateConditionInput]
+  owners: ModelStringInput
+  phone1: ModelStringInput
+  race: ModelStringInput
+  rating: ModelStringInput
+  state: ModelStringInput
+}
+
+input ModelCandidateFilterInput {
+  and: [ModelCandidateFilterInput]
+  city: ModelStringInput
+  email1: ModelStringInput
+  experience: ModelStringInput
+  feedback: ModelStringInput
+  first_name: ModelStringInput
+  gender: ModelStringInput
+  id: ModelIDInput
+  last_name: ModelStringInput
+  not: ModelCandidateFilterInput
+  or: [ModelCandidateFilterInput]
+  owners: ModelStringInput
+  phone1: ModelStringInput
+  race: ModelStringInput
+  rating: ModelStringInput
+  state: ModelStringInput
+}
+
+input ModelCompanyConditionInput {
+  and: [ModelCompanyConditionInput]
+  company_name: ModelStringInput
+  not: ModelCompanyConditionInput
+  or: [ModelCompanyConditionInput]
+  plan: ModelStringInput
+}
+
+input ModelCompanyFilterInput {
+  and: [ModelCompanyFilterInput]
+  company_name: ModelStringInput
+  id: ModelIDInput
+  not: ModelCompanyFilterInput
+  or: [ModelCompanyFilterInput]
+  plan: ModelStringInput
+}
+
+input ModelEmailThreadsConditionInput {
+  and: [ModelEmailThreadsConditionInput]
+  not: ModelEmailThreadsConditionInput
+  or: [ModelEmailThreadsConditionInput]
+}
+
+input ModelEmailThreadsFilterInput {
+  and: [ModelEmailThreadsFilterInput]
+  id: ModelIDInput
+  not: ModelEmailThreadsFilterInput
+  or: [ModelEmailThreadsFilterInput]
+}
+
+input ModelFeedBackConditionInput {
+  and: [ModelFeedBackConditionInput]
+  applicationID: ModelIDInput
+  feedback: ModelStringInput
+  interviewID: ModelIDInput
+  not: ModelFeedBackConditionInput
+  or: [ModelFeedBackConditionInput]
+  rating: ModelIntInput
+  recommend: ModelBooleanInput
+  userId: ModelIDInput
+}
+
+input ModelFeedBackFilterInput {
+  and: [ModelFeedBackFilterInput]
+  applicationID: ModelIDInput
+  feedback: ModelStringInput
+  id: ModelIDInput
+  interviewID: ModelIDInput
+  not: ModelFeedBackFilterInput
+  or: [ModelFeedBackFilterInput]
+  rating: ModelIntInput
+  recommend: ModelBooleanInput
+  userId: ModelIDInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIDKeyConditionInput {
+  beginsWith: ID
+  between: [ID]
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelInterviewConditionInput {
+  and: [ModelInterviewConditionInput]
+  applicationID: ModelIDInput
+  endDate: ModelStringInput
+  feed_back_status: ModelStringInput
+  interview_status: ModelStringInput
+  interviewer: ModelStringInput
+  location: ModelStringInput
+  not: ModelInterviewConditionInput
+  or: [ModelInterviewConditionInput]
+  startDate: ModelStringInput
+  type: ModelStringInput
+}
+
+input ModelInterviewFilterInput {
+  and: [ModelInterviewFilterInput]
+  applicationID: ModelIDInput
+  endDate: ModelStringInput
+  feed_back_status: ModelStringInput
+  id: ModelIDInput
+  interview_status: ModelStringInput
+  interviewer: ModelStringInput
+  location: ModelStringInput
+  not: ModelInterviewFilterInput
+  or: [ModelInterviewFilterInput]
+  startDate: ModelStringInput
+  type: ModelStringInput
+}
+
+input ModelJobConditionInput {
+  and: [ModelJobConditionInput]
+  benefits: ModelStringInput
+  companyID: ModelIDInput
+  country: ModelStringInput
+  currency: ModelStringInput
+  department_code: ModelStringInput
+  description: ModelStringInput
+  education: ModelStringInput
+  employment_type: ModelStringInput
+  experience: ModelStringInput
+  industry: ModelStringInput
+  is_remote: ModelBooleanInput
+  job_function: ModelStringInput
+  job_title: ModelStringInput
+  keywords: ModelStringInput
+  not: ModelJobConditionInput
+  or: [ModelJobConditionInput]
+  published_time: ModelStringInput
+  requirements: ModelStringInput
+  salary_from: ModelIntInput
+  salary_to: ModelIntInput
+  state: ModelStringInput
+  sub_function: ModelStringInput
+  tags: ModelStringInput
+  zip_code: ModelIntInput
+}
+
+input ModelJobFilterInput {
+  and: [ModelJobFilterInput]
+  benefits: ModelStringInput
+  companyID: ModelIDInput
+  country: ModelStringInput
+  currency: ModelStringInput
+  department_code: ModelStringInput
+  description: ModelStringInput
+  education: ModelStringInput
+  employment_type: ModelStringInput
+  experience: ModelStringInput
+  id: ModelIDInput
+  industry: ModelStringInput
+  is_remote: ModelBooleanInput
+  job_function: ModelStringInput
+  job_title: ModelStringInput
+  keywords: ModelStringInput
+  not: ModelJobFilterInput
+  or: [ModelJobFilterInput]
+  published_time: ModelStringInput
+  requirements: ModelStringInput
+  salary_from: ModelIntInput
+  salary_to: ModelIntInput
+  state: ModelStringInput
+  sub_function: ModelStringInput
+  tags: ModelStringInput
+  zip_code: ModelIntInput
+}
+
+input ModelPrivateNoteConditionInput {
+  and: [ModelPrivateNoteConditionInput]
+  content: ModelStringInput
+  not: ModelPrivateNoteConditionInput
+  or: [ModelPrivateNoteConditionInput]
+}
+
+input ModelPrivateNoteFilterInput {
+  and: [ModelPrivateNoteFilterInput]
+  content: ModelStringInput
+  id: ModelIDInput
+  not: ModelPrivateNoteFilterInput
+  or: [ModelPrivateNoteFilterInput]
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelTaskConditionInput {
+  and: [ModelTaskConditionInput]
+  description: ModelStringInput
+  due_date: ModelStringInput
+  not: ModelTaskConditionInput
+  or: [ModelTaskConditionInput]
+  status: ModelStringInput
+  title: ModelStringInput
+}
+
+input ModelTaskFilterInput {
+  and: [ModelTaskFilterInput]
+  description: ModelStringInput
+  due_date: ModelStringInput
+  id: ModelIDInput
+  not: ModelTaskFilterInput
+  or: [ModelTaskFilterInput]
+  status: ModelStringInput
+  title: ModelStringInput
+}
+
+input ModelUserApplicationConditionInput {
+  and: [ModelUserApplicationConditionInput]
+  applicationID: ModelIDInput
+  not: ModelUserApplicationConditionInput
+  or: [ModelUserApplicationConditionInput]
+  userID: ModelIDInput
+}
+
+input ModelUserApplicationFilterInput {
+  and: [ModelUserApplicationFilterInput]
+  applicationID: ModelIDInput
+  id: ModelIDInput
+  not: ModelUserApplicationFilterInput
+  or: [ModelUserApplicationFilterInput]
+  userID: ModelIDInput
+}
+
+input ModelUserConditionInput {
+  and: [ModelUserConditionInput]
+  applications: ModelStringInput
+  city: ModelStringInput
+  company_id: ModelStringInput
+  email1: ModelStringInput
+  first_name: ModelStringInput
+  last_name: ModelStringInput
+  not: ModelUserConditionInput
+  or: [ModelUserConditionInput]
+  phone1: ModelStringInput
+  rating: ModelStringInput
+  state: ModelStringInput
+}
+
+input ModelUserFilterInput {
+  and: [ModelUserFilterInput]
+  applications: ModelStringInput
+  city: ModelStringInput
+  company_id: ModelStringInput
+  email1: ModelStringInput
+  first_name: ModelStringInput
+  id: ModelIDInput
+  last_name: ModelStringInput
+  not: ModelUserFilterInput
+  or: [ModelUserFilterInput]
+  phone1: ModelStringInput
+  rating: ModelStringInput
+  state: ModelStringInput
+}
+
+input ModelUserJobConditionInput {
+  and: [ModelUserJobConditionInput]
+  jobID: ModelIDInput
+  not: ModelUserJobConditionInput
+  or: [ModelUserJobConditionInput]
+  userID: ModelIDInput
+}
+
+input ModelUserJobFilterInput {
+  and: [ModelUserJobFilterInput]
+  id: ModelIDInput
+  jobID: ModelIDInput
+  not: ModelUserJobFilterInput
+  or: [ModelUserJobFilterInput]
+  userID: ModelIDInput
+}
+
+input UpdateApplicationInput {
+  _version: Int
+  candidateID: ID
+  city: String
+  comments: String
+  disability: String
+  email1: AWSEmail
+  email_threads: String
+  experience: String
+  feedback: String
+  first_name: String
+  gender: String
+  id: ID!
+  interviews: String
+  job: String
+  jobID: ID
+  last_name: String
+  owners: String
+  phone1: AWSPhone
+  race: String
+  rating: String
+  referer: String
+  source: String
+  source_category: String
+  stage: String
+  state: String
+  supporting_docs: String
+  tags: [String]
+  tasks: String
+  veteran: String
+}
+
+input UpdateCandidateInput {
+  _version: Int
+  city: String
+  email1: String
+  experience: String
+  feedback: String
+  first_name: String
+  gender: String
+  id: ID!
+  last_name: String
+  owners: String
+  phone1: String
+  race: String
+  rating: String
+  state: String
+}
+
+input UpdateCompanyInput {
+  _version: Int
+  companyUserId: ID
+  company_name: String
+  id: ID!
+  plan: String
+}
+
+input UpdateEmailThreadsInput {
+  _version: Int
+  id: ID!
+}
+
+input UpdateFeedBackInput {
+  _version: Int
+  applicationID: ID
+  feedback: String
+  id: ID!
+  interviewID: ID
+  rating: Int
+  recommend: Boolean
+  userId: ID
+}
+
+input UpdateInterviewInput {
+  _version: Int
+  applicationID: ID
+  endDate: String
+  feed_back_status: String
+  id: ID!
+  interviewCandidateId: ID
+  interview_status: String
+  interviewer: String
+  location: String
+  startDate: String
+  type: String
+}
+
+input UpdateJobInput {
+  _version: Int
+  benefits: String
+  companyID: ID
+  country: String
+  currency: String
+  department_code: String
+  description: String
+  education: String
+  employment_type: String
+  experience: String
+  id: ID!
+  industry: String
+  is_remote: Boolean
+  job_function: String
+  job_title: String
+  keywords: String
+  published_time: AWSDateTime
+  requirements: String
+  salary_from: Int
+  salary_to: Int
+  state: String
+  sub_function: String
+  tags: [String]
+  zip_code: Int
+}
+
+input UpdatePrivateNoteInput {
+  _version: Int
+  content: String
+  id: ID!
+}
+
+input UpdateTaskInput {
+  _version: Int
+  description: String
+  due_date: String
+  id: ID!
+  status: String
+  taskAssigned_toId: ID
+  title: String
+}
+
+input UpdateUserApplicationInput {
+  _version: Int
+  applicationID: ID
+  id: ID!
+  userID: ID
+}
+
+input UpdateUserInput {
+  _version: Int
+  applications: String
+  city: String
+  company_id: String
+  email1: String
+  first_name: String
+  id: ID!
+  last_name: String
+  phone1: String
+  rating: String
+  state: String
+}
+
+input UpdateUserJobInput {
+  _version: Int
+  id: ID!
+  jobID: ID
+  userID: ID
+}
